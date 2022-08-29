@@ -1,5 +1,4 @@
 let startTime = Date.now();
-let duration = 30;
 let timer;
 let counter = 0;
 let score = 0;
@@ -11,6 +10,7 @@ const durationTable = {
     reading: 60,
     writing: 60,
 };
+let duration = durationTable[testType];
 const scoresTable = {
     listening: {
         4:      [11, 12],
@@ -374,6 +374,7 @@ function init() {
     } else {
         createFields();
     }
+    duration = durationTable[testType];
     document.getElementById('test-type-select').value = testType;
     tick();
     setPageTitle();
