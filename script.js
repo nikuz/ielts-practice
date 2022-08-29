@@ -3,7 +3,8 @@ let duration = 30;
 let timer;
 let counter = 0;
 let score = 0;
-let testType = 'listening';
+const acceptedTestTypes = ['listening', 'reading', 'writing'];
+let testType = acceptedTestTypes[0];
 let started = false;
 const durationTable = {
     listening: 30,
@@ -155,7 +156,7 @@ function textAreaQuestionChangeHandler(el) {
 function textAreaCountWords(containerEl) {
     const textAreaEl = containerEl.querySelector('.textarea');
     const value = textAreaEl.innerText;
-    const target = Number(containerEl.getAttribute('data-target'));
+    const target = Number(textAreaEl.getAttribute('data-target'));
     const words = value.split(/\s+/).filter(item => item !== '');
     const counter = words.length;
     const targetIsAchieved = counter >= target;
@@ -318,6 +319,7 @@ function setTestType(el) {
     }
     setScore();
     setPageTitle();
+    history.pushState(null, null, `#${testType}`);
 }
 
 function tick() {
@@ -363,6 +365,10 @@ function setPageTitle() {
 }
 
 function init() {
+    const hash = window.location.hash.replace('#', '');
+    if (acceptedTestTypes.includes(hash)) {
+        testType = hash;
+    }
     if (testType === 'writing') {
         createTextAreas();
     } else {
