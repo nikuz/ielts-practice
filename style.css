@@ -1,0 +1,126 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.button {
+    padding: 3px 5px;
+    border: 1px solid #CCC;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none!important;
+}
+
+.flex {
+    display: flex;
+}
+
+.success {
+    color: green;
+}
+
+.error {
+    color: red;
+}
+
+*:disabled,
+.disabled {
+    opacity: 0.5;
+}
+
+ol, ul {
+    margin: 0;
+    padding: 0 0 0 30px;
+}
+
+h1 {
+    margin: 0;
+    padding: 10px 20px;
+}
+
+#stats {
+    position: fixed;
+    right: 10px;
+    top: 10px;
+}
+
+.stats-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+#counter {
+    color: green;
+}
+
+#timer {
+    height: 1em;
+    margin-right: 10px;
+    color: red;
+}
+
+#start-button {
+    background-color: green;
+    color: #FFF;
+}
+
+#stop-button {
+    background-color: red;
+    color: #FFF;
+}
+
+.score-counter {
+    margin: 0 10px;
+}
+
+.question-item {
+    margin-bottom: 10px;
+}
+
+.question-item input {
+    font-size: 16px;
+}
+
+.question-item button {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    text-align: center;
+    border: 1px solid #CCC;
+    cursor: pointer;
+}
+
+.question-item button.checked {
+    background-color: green;
+    color: #FFF;
+}
+
+.text-area-container-item {
+    width: 50%;
+    margin: 0 20px 50px;
+}
+
+.textarea {
+    padding: 10px;
+    border: 1px solid gray;
+}
+
+.text-area-stats p {
+    margin: 0 20px 0 0;
+}
+
+.text-areas-buttons button,
+.text-areas-buttons select {
+    margin-right: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+    .text-area-container-item {
+        width: auto;
+    }
+}

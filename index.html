@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>IELTS Practice</title>
+    <link href="style.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+    <h1 id="title"></h1>
+    <div id="stats">
+        <div class="stats-row">
+            <div id="timer"></div>
+            <button onclick="start()" id="start-button" class="button">Start</button>
+            <button onclick="stop()" id="stop-button" class="button hidden">Stop</button>
+        </div>
+        <div class="stats-row">
+            <select id="test-type-select" onchange="setTestType(this)">
+                <option value="listening">Listening</option>
+                <option value="reading">Reading</option>
+                <option value="writing">Writing</option>
+            </select>
+        </div>
+        <div class="stats-row">
+            <div id="counter"></div>
+            <div class="score-counter">
+                (
+                <span id="score"></span>
+                )
+            </div>
+            <button onclick="reset()" class="button">Reset</button>
+        </div>
+    </div>
+
+    <ol id="questions-list"></ol>
+    <div id="text-areas"></div>
+
+    <!-- templates -->
+    <div id="fields-template" class="hidden">
+        <input type="text" oninput="fieldChangeHandler()" />
+        <button onclick="checkQuestion(this)" tabindex="-1" class="button">✓</button>
+    </div>
+    <div id="text-areas-template" class="hidden">
+        <h3 class="text-area-title"></h3>
+        <p contenteditable="true" class="writing-question" oninput="textAreaQuestionChangeHandler(this)">...</p>
+        <div class="flex text-area-stats">
+            <p class="word-counter"><b>0</b> words</p>
+            <p class="word-target"></p>
+        </div>
+        <p
+            contenteditable="true"
+            class="textarea"
+            spellcheck="false"
+            oninput="textAreaChangeHandler(this)"
+        >
+            ...
+        </p>
+        <div class="flex text-areas-buttons">
+            <button class="button" onclick="textAreaCheckSpelling(this)">Check spelling</button>
+            <select class="text-areas-saved-assays" title="Saved assays" onchange="textAreaLoadWriting(this)"></select>
+        </div>
+    </div>
+    <!--  -->
+
+    <script src="script.js" type="text/javascript"></script>
+</body>
+</html>
