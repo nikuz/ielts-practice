@@ -112,7 +112,7 @@ function createTextAreas() {
             textareaEl.setAttribute('data-target', targetAmount.toString());
         }
 
-        showSavedAssays(el);
+        showSavedEssays(el);
 
         areasContainer.appendChild(el);
     }
@@ -138,7 +138,7 @@ function textAreaAutoSave(containerEl) {
         question: questionEl.innerText,
         text: textAreaEl.innerText,
     }));
-    showSavedAssays(containerEl);
+    showSavedEssays(containerEl);
 }
 
 let keyDownDebounceTimer;
@@ -191,21 +191,21 @@ function textAreaCheckSpelling(el) {
     }
 }
 
-function showSavedAssays(containerEl) {
-    const selector = containerEl.querySelector('.text-areas-saved-assays');
+function showSavedEssays(containerEl) {
+    const selector = containerEl.querySelector('.text-areas-saved-essays');
     const part = containerEl.getAttribute('data-part');
     if (selector) {
         selector.innerHTML = '';
         selector.appendChild(document.createElement('option'));
-        const savedAssays = [];
+        const savedEssays = [];
         for (let i = 0, l = localStorage.length; i < l; i++) {
             const key = localStorage.key(i);
             if (key.startsWith(part)) {
-                savedAssays.push(key);
+                savedEssays.push(key);
             }
         }
-        if (savedAssays.length) {
-            savedAssays.forEach(item => {
+        if (savedEssays.length) {
+            savedEssays.forEach(item => {
                 const option = document.createElement('option');
                 option.value = item;
                 option.innerText = item;
@@ -219,31 +219,31 @@ function textAreaLoadWriting(el) {
     const value = el.value;
     const containerEl = el.closest('.text-area-container-item');
 
-    if (value && confirm(`Load "${value}" assay?`)) {
-        const assay = JSON.parse(localStorage.getItem(value));
+    if (value && confirm(`Load "${value}" essay?`)) {
+        const essay = JSON.parse(localStorage.getItem(value));
 
         const questionEl = containerEl.querySelector('.writing-question');
         if (questionEl) {
-            questionEl.innerText = assay.question;
+            questionEl.innerText = essay.question;
         }
 
         const textAreaEl = containerEl.querySelector('.textarea');
         if (textAreaEl) {
-            textAreaEl.innerText = assay.text;
+            textAreaEl.innerText = essay.text;
         }
 
         const part = containerEl.getAttribute('data-part');
-        containerEl.setAttribute('data-id', textAreaGenerateContainerId(part, assay.question));
+        containerEl.setAttribute('data-id', textAreaGenerateContainerId(part, essay.question));
         textAreaCountWords(containerEl);
 
         const buttonsContainer = containerEl.querySelector('.text-areas-buttons');
         if (buttonsContainer) {
-            const deleteButton = containerEl.querySelector('.delete-assay-button');
+            const deleteButton = containerEl.querySelector('.delete-essay-button');
             if (!deleteButton) {
                 const deleteButton = document.createElement('button');
-                deleteButton.className = 'button delete-assay-button';
+                deleteButton.className = 'button delete-essay-button';
                 deleteButton.textContent = '❌';
-                deleteButton.title = 'Remove assay from local storage';
+                deleteButton.title = 'Remove essay from local storage';
                 deleteButton.onclick = textAreaDeleteWriting;
                 buttonsContainer.appendChild(deleteButton);
             }
@@ -251,7 +251,7 @@ function textAreaLoadWriting(el) {
     } else {
         el.value = '';
         const buttonsContainer = containerEl.querySelector('.text-areas-buttons');
-        const deleteButton = containerEl.querySelector('.delete-assay-button');
+        const deleteButton = containerEl.querySelector('.delete-essay-button');
         if (buttonsContainer && deleteButton) {
             buttonsContainer.removeChild(deleteButton);
         }
@@ -261,7 +261,7 @@ function textAreaLoadWriting(el) {
 function textAreaDeleteWriting(event) {
     const el = event.target;
     const containerEl = el.closest('.text-area-container-item');
-    const selector = containerEl.querySelector('.text-areas-saved-assays');
+    const selector = containerEl.querySelector('.text-areas-saved-essays');
     const buttonsContainer = containerEl.querySelector('.text-areas-buttons');
 
     if (selector) {
