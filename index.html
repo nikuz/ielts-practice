@@ -35,15 +35,18 @@
     <div id="text-areas"></div>
 
     <!-- templates -->
-    <div id="fields-template" class="hidden">
+    <script type="text/template" id="fields-template">
         <input type="text" oninput="fieldChangeHandler()" />
         <button onclick="checkQuestion(this)" tabindex="-1" class="button">✓</button>
-    </div>
-    <div id="text-areas-template" class="hidden">
+    </script>
+    <script type="text/template" id="text-areas-template">
         <h3 class="text-area-title"></h3>
         <p contenteditable="true" class="writing-question" oninput="textAreaQuestionChangeHandler(this)">...</p>
         <div class="flex text-area-stats">
-            <p class="word-counter"><b>0</b> words</p>
+            <p class="word-counter">
+                <b>0</b>
+                words
+            </p>
             <p class="word-target"></p>
         </div>
         <p
@@ -58,7 +61,7 @@
             <button class="button" onclick="textAreaCheckSpelling(this)">Check spelling</button>
             <select class="text-areas-saved-assays" title="Saved assays" onchange="textAreaLoadWriting(this)"></select>
         </div>
-    </div>
+    </script>
     <!--  -->
 
     <script src="script.js?v=1" type="text/javascript"></script>
