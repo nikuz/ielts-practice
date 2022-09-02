@@ -326,13 +326,7 @@ function tick() {
     const time = (duration * 60) - ((Date.now() - startTime) / 1000);
     const roundedTime = Math.round(time) / 60;
     let minutes = Math.trunc(roundedTime);
-    let seconds = Math.round(remapValue({
-        value: roundedTime - minutes,
-        inMin: 0,
-        inMax: 1,
-        outMin: 0,
-        outMax: 60,
-    }));
+    let seconds = Math.round((roundedTime - minutes) * 60);
 
     if (minutes < 0) {
         minutes = 0;
@@ -412,19 +406,6 @@ function reset() {
 }
 
 // utils
-function remapValue(props) {
-    if (props.value < props.inMin) {
-        return props.outMin;
-    }
-    if (props.value > props.inMax) {
-        return props.outMax;
-    }
-
-    return (
-        ((props.value - props.inMin) * (props.outMax - props.outMin)) / (props.inMax - props.inMin)
-    ) + props.outMin;
-}
-
 function twoDigits(value) {
     if (value >= 10) {
         return value.toString();
@@ -432,6 +413,5 @@ function twoDigits(value) {
     return `0${value}`;
 }
 //
-
 
 init();
